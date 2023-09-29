@@ -1,6 +1,6 @@
 # JA4X for Go
 
-An implementation of the (JA4X hash algorithm)[https://github.com/FoxIO-LLC/ja4] in Go.
+An implementation of the [JA4X hash algorithm](https://github.com/FoxIO-LLC/ja4) in Go.
 
 # Command-line usage
 
@@ -19,7 +19,7 @@ ja4x: a373a9f83c6b_2bab15409345_7bf9a7bf7029
 
 Extract JA4X for a certificate, including raw version:
 
-``````
+```
 ./ja4x -r example_com.pem
 ja4x: a373a9f83c6b_2bab15409345_7bf9a7bf7029
 ja4x_r: 550406,55040a,550403_550406,550408,550407,55040a,550403_551d23,551d0e,551d11,551d0f,551d25,551d1f,551d20,2b06010505070101,551d13,2b06010401d679020402
@@ -32,19 +32,19 @@ Certificates can be supplied raw, or PEM encoded.
 Add to your project:
 
 ```
-go get github.com/driftnet-io/ja4x
+go get github.com/driftnet-io/go-ja4x
 ```
 
-Then call either
+Then, assuming `cert` is an `*x509.Certificate`,
 
 ```
-func JA4X(cert *x509.Certificate) string
+ja4xHash := ja4x.JA4X(cert)
 ```
 
 or if you want the raw version as well,
 
 ```
-func JA4XWithRaw(cert *x509.Certificate) (string, string)
+ja4xHash, ja4xRawHash := ja4x.JA4XWithRaw(cert)
 ```
 
 # Licensing
