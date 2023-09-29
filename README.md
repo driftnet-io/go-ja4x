@@ -41,7 +41,7 @@ Then, assuming `cert` is an `*x509.Certificate`,
 ja4xHash := ja4x.JA4X(cert)
 ```
 
-or if you want the raw version as well,
+or with the raw version,
 
 ```
 ja4xHash, ja4xRawHash := ja4x.JA4XWithRaw(cert)
