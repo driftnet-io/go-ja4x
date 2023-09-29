@@ -76,18 +76,11 @@ func components(cert *x509.Certificate) []string {
 // getASN1Body returns the body of a marshalled ASN.1 sequence, ignoring errors
 func getASN1Body(oid asn1.ObjectIdentifier) []byte {
 
-	rawOid, err := asn1.Marshal(oid)
-	if err != nil {
-		return nil
-	}
+	var rawValue asn1.RawValue
+	m, _ := asn1.Marshal(oid)
+	asn1.Unmarshal(m, &rawValue)
 
-	// ASN.1 header consists of a Tag byte and Length bytes
-	headerLen := 2
-	if int(rawOid[1]) > 128 {
-		headerLen += int(rawOid[1]) - 128
-	}
-
-	return rawOid[headerLen:]
+	return rawValue.Bytes
 }
 
 // hash12 is the first 12 characters of the SHA256 of a string,
